@@ -1,0 +1,321 @@
+__________________________________________________________________________________________________
+ Layer (type)                   Output Shape         Param #     Connected to
+==================================================================================================  Primera Capa
+ image (InputLayer)             [(None, 3, 768, 576  0           []
+                                )]
+
+ zero_padding2d (ZeroPadding2D)  (None, 3, 770, 578)  0          ['image[0][0]']
+
+ conv2d (Conv2D)                (None, 32, 384, 288  864         ['zero_padding2d[0][0]']
+                                )
+
+ batch_normalization (BatchNorm  (None, 32, 384, 288  128        ['conv2d[0][0]']
+ alization)                     )
+
+ re_lu (ReLU)                   (None, 32, 384, 288  0           ['batch_normalization[0][0]']
+                                )
+
+ max_pooling2d (MaxPooling2D)   (None, 32, 192, 144  0           ['re_lu[0][0]']
+                                )
+
+==================================================================================================  Bottleneck 0
+ zero_padding2d_1 (ZeroPadding2  (None, 32, 194, 146  0          ['max_pooling2d[0][0]']
+ D)                             )
+
+ conv2d_1 (Conv2D)              (None, 32, 192, 144  288         ['zero_padding2d_1[0][0]']
+                                )
+
+ batch_normalization_1 (BatchNo  (None, 32, 192, 144  128        ['conv2d_1[0][0]']
+ rmalization)                   )
+
+ re_lu_1 (ReLU)                 (None, 32, 192, 144  0           ['batch_normalization_1[0][0]']
+                                )
+
+ conv2d_2 (Conv2D)              (None, 16, 192, 144  512         ['re_lu_1[0][0]']
+                                )
+
+ batch_normalization_2 (BatchNo  (None, 16, 192, 144  64         ['conv2d_2[0][0]']
+ rmalization)                   )
+
+==================================================================================================  Bottleneck 1
+ conv2d_3 (Conv2D)              (None, 96, 192, 144  1536        ['batch_normalization_2[0][0]']
+                                )
+
+ batch_normalization_3 (BatchNo  (None, 96, 192, 144  384        ['conv2d_3[0][0]']
+ rmalization)                   )
+
+ re_lu_2 (ReLU)                 (None, 96, 192, 144  0           ['batch_normalization_3[0][0]']
+                                )
+
+ zero_padding2d_2 (ZeroPadding2  (None, 96, 194, 146  0          ['re_lu_2[0][0]']
+ D)                             )
+
+ conv2d_4 (Conv2D)              (None, 96, 96, 72)   864         ['zero_padding2d_2[0][0]']
+
+ batch_normalization_4 (BatchNo  (None, 96, 96, 72)  384         ['conv2d_4[0][0]']
+ rmalization)
+
+ re_lu_3 (ReLU)                 (None, 96, 96, 72)   0           ['batch_normalization_4[0][0]']
+
+ conv2d_5 (Conv2D)              (None, 24, 96, 72)   2304        ['re_lu_3[0][0]']
+
+ batch_normalization_5 (BatchNo  (None, 24, 96, 72)  96          ['conv2d_5[0][0]']
+ rmalization)
+
+ conv2d_6 (Conv2D)              (None, 144, 96, 72)  3456        ['batch_normalization_5[0][0]']
+
+ batch_normalization_6 (BatchNo  (None, 144, 96, 72)  576        ['conv2d_6[0][0]']
+ rmalization)
+
+ re_lu_4 (ReLU)                 (None, 144, 96, 72)  0           ['batch_normalization_6[0][0]']
+
+ zero_padding2d_3 (ZeroPadding2  (None, 144, 98, 74)  0          ['re_lu_4[0][0]']
+ D)
+
+ conv2d_7 (Conv2D)              (None, 144, 96, 72)  1296        ['zero_padding2d_3[0][0]']
+
+ batch_normalization_7 (BatchNo  (None, 144, 96, 72)  576        ['conv2d_7[0][0]']
+ rmalization)
+
+ re_lu_5 (ReLU)                 (None, 144, 96, 72)  0           ['batch_normalization_7[0][0]']
+
+ conv2d_8 (Conv2D)              (None, 24, 96, 72)   3456        ['re_lu_5[0][0]']
+
+ batch_normalization_8 (BatchNo  (None, 24, 96, 72)  96          ['conv2d_8[0][0]']
+ rmalization)
+
+ add (Add)                      (None, 24, 96, 72)   0           ['batch_normalization_5[0][0]',
+                                                                  'batch_normalization_8[0][0]']
+
+==================================================================================================  Bottleneck 2
+ conv2d_9 (Conv2D)              (None, 144, 96, 72)  3456        ['add[0][0]']
+
+ batch_normalization_9 (BatchNo  (None, 144, 96, 72)  576        ['conv2d_9[0][0]']
+ rmalization)
+
+ re_lu_6 (ReLU)                 (None, 144, 96, 72)  0           ['batch_normalization_9[0][0]']
+
+ zero_padding2d_4 (ZeroPadding2  (None, 144, 98, 74)  0          ['re_lu_6[0][0]']
+ D)
+
+ conv2d_10 (Conv2D)             (None, 144, 48, 36)  1296        ['zero_padding2d_4[0][0]']
+
+ batch_normalization_10 (BatchN  (None, 144, 48, 36)  576        ['conv2d_10[0][0]']
+ ormalization)
+
+ re_lu_7 (ReLU)                 (None, 144, 48, 36)  0           ['batch_normalization_10[0][0]']
+
+ conv2d_11 (Conv2D)             (None, 32, 48, 36)   4608        ['re_lu_7[0][0]']
+
+ batch_normalization_11 (BatchN  (None, 32, 48, 36)  128         ['conv2d_11[0][0]']
+ ormalization)
+
+==================================================================================================  Bottleneck 3
+ conv2d_12 (Conv2D)             (None, 192, 48, 36)  6144        ['batch_normalization_11[0][0]']
+
+ batch_normalization_12 (BatchN  (None, 192, 48, 36)  768        ['conv2d_12[0][0]']
+ ormalization)
+
+ re_lu_8 (ReLU)                 (None, 192, 48, 36)  0           ['batch_normalization_12[0][0]']
+
+ zero_padding2d_5 (ZeroPadding2  (None, 192, 50, 38)  0          ['re_lu_8[0][0]']
+ D)
+
+ conv2d_13 (Conv2D)             (None, 192, 24, 18)  1728        ['zero_padding2d_5[0][0]']
+
+ batch_normalization_13 (BatchN  (None, 192, 24, 18)  768        ['conv2d_13[0][0]']
+ ormalization)
+
+ re_lu_9 (ReLU)                 (None, 192, 24, 18)  0           ['batch_normalization_13[0][0]']
+
+ conv2d_14 (Conv2D)             (None, 64, 24, 18)   12288       ['re_lu_9[0][0]']
+
+ batch_normalization_14 (BatchN  (None, 64, 24, 18)  256         ['conv2d_14[0][0]']
+ ormalization)
+
+ conv2d_15 (Conv2D)             (None, 384, 24, 18)  24576       ['batch_normalization_14[0][0]']
+
+ batch_normalization_15 (BatchN  (None, 384, 24, 18)  1536       ['conv2d_15[0][0]']
+ ormalization)
+
+ re_lu_10 (ReLU)                (None, 384, 24, 18)  0           ['batch_normalization_15[0][0]']
+
+ zero_padding2d_6 (ZeroPadding2  (None, 384, 26, 20)  0          ['re_lu_10[0][0]']
+ D)
+
+ conv2d_16 (Conv2D)             (None, 384, 24, 18)  3456        ['zero_padding2d_6[0][0]']
+
+ batch_normalization_16 (BatchN  (None, 384, 24, 18)  1536       ['conv2d_16[0][0]']
+ ormalization)
+
+ re_lu_11 (ReLU)                (None, 384, 24, 18)  0           ['batch_normalization_16[0][0]']
+
+ conv2d_17 (Conv2D)             (None, 64, 24, 18)   24576       ['re_lu_11[0][0]']
+
+ batch_normalization_17 (BatchN  (None, 64, 24, 18)  256         ['conv2d_17[0][0]']
+ ormalization)
+
+ add_1 (Add)                    (None, 64, 24, 18)   0           ['batch_normalization_14[0][0]',
+                                                                  'batch_normalization_17[0][0]']
+
+ conv2d_18 (Conv2D)             (None, 384, 24, 18)  24576       ['add_1[0][0]']
+
+ batch_normalization_18 (BatchN  (None, 384, 24, 18)  1536       ['conv2d_18[0][0]']
+ ormalization)
+
+ re_lu_12 (ReLU)                (None, 384, 24, 18)  0           ['batch_normalization_18[0][0]']
+
+ zero_padding2d_7 (ZeroPadding2  (None, 384, 26, 20)  0          ['re_lu_12[0][0]']
+ D)
+
+ conv2d_19 (Conv2D)             (None, 384, 24, 18)  3456        ['zero_padding2d_7[0][0]']
+
+ batch_normalization_19 (BatchN  (None, 384, 24, 18)  1536       ['conv2d_19[0][0]']
+ ormalization)
+
+ re_lu_13 (ReLU)                (None, 384, 24, 18)  0           ['batch_normalization_19[0][0]']
+
+ conv2d_20 (Conv2D)             (None, 64, 24, 18)   24576       ['re_lu_13[0][0]']
+
+ batch_normalization_20 (BatchN  (None, 64, 24, 18)  256         ['conv2d_20[0][0]']
+ ormalization)
+
+ add_2 (Add)                    (None, 64, 24, 18)   0           ['add_1[0][0]',
+                                                                  'batch_normalization_20[0][0]']
+
+==================================================================================================  Bottleneck 4
+ conv2d_21 (Conv2D)             (None, 384, 24, 18)  24576       ['add_2[0][0]']
+
+ batch_normalization_21 (BatchN  (None, 384, 24, 18)  1536       ['conv2d_21[0][0]']
+ ormalization)
+
+ re_lu_14 (ReLU)                (None, 384, 24, 18)  0           ['batch_normalization_21[0][0]']
+
+ zero_padding2d_8 (ZeroPadding2  (None, 384, 26, 20)  0          ['re_lu_14[0][0]']
+ D)
+
+ conv2d_22 (Conv2D)             (None, 384, 24, 18)  3456        ['zero_padding2d_8[0][0]']
+
+ batch_normalization_22 (BatchN  (None, 384, 24, 18)  1536       ['conv2d_22[0][0]']
+ ormalization)
+
+ re_lu_15 (ReLU)                (None, 384, 24, 18)  0           ['batch_normalization_22[0][0]']
+
+ conv2d_23 (Conv2D)             (None, 96, 24, 18)   36864       ['re_lu_15[0][0]']
+
+ batch_normalization_23 (BatchN  (None, 96, 24, 18)  384         ['conv2d_23[0][0]']
+ ormalization)
+
+==================================================================================================  Bottleneck 5
+ conv2d_24 (Conv2D)             (None, 576, 24, 18)  55296       ['batch_normalization_23[0][0]']
+
+ batch_normalization_24 (BatchN  (None, 576, 24, 18)  2304       ['conv2d_24[0][0]']
+ ormalization)
+
+ re_lu_16 (ReLU)                (None, 576, 24, 18)  0           ['batch_normalization_24[0][0]']
+
+ zero_padding2d_9 (ZeroPadding2  (None, 576, 26, 20)  0          ['re_lu_16[0][0]']
+ D)
+
+ conv2d_25 (Conv2D)             (None, 576, 12, 9)   5184        ['zero_padding2d_9[0][0]']
+
+ batch_normalization_25 (BatchN  (None, 576, 12, 9)  2304        ['conv2d_25[0][0]']
+ ormalization)
+
+ re_lu_17 (ReLU)                (None, 576, 12, 9)   0           ['batch_normalization_25[0][0]']
+
+ conv2d_26 (Conv2D)             (None, 160, 12, 9)   92160       ['re_lu_17[0][0]']
+
+ batch_normalization_26 (BatchN  (None, 160, 12, 9)  640         ['conv2d_26[0][0]']
+ ormalization)
+
+ conv2d_27 (Conv2D)             (None, 960, 12, 9)   153600      ['batch_normalization_26[0][0]']
+
+ batch_normalization_27 (BatchN  (None, 960, 12, 9)  3840        ['conv2d_27[0][0]']
+ ormalization)
+
+ re_lu_18 (ReLU)                (None, 960, 12, 9)   0           ['batch_normalization_27[0][0]']
+
+ zero_padding2d_10 (ZeroPadding  (None, 960, 14, 11)  0          ['re_lu_18[0][0]']
+ 2D)
+
+ conv2d_28 (Conv2D)             (None, 960, 12, 9)   8640        ['zero_padding2d_10[0][0]']
+
+ batch_normalization_28 (BatchN  (None, 960, 12, 9)  3840        ['conv2d_28[0][0]']
+ ormalization)
+
+ re_lu_19 (ReLU)                (None, 960, 12, 9)   0           ['batch_normalization_28[0][0]']
+
+ conv2d_29 (Conv2D)             (None, 160, 12, 9)   153600      ['re_lu_19[0][0]']
+
+ batch_normalization_29 (BatchN  (None, 160, 12, 9)  640         ['conv2d_29[0][0]']
+ ormalization)
+
+ add_3 (Add)                    (None, 160, 12, 9)   0           ['batch_normalization_26[0][0]',
+                                                                  'batch_normalization_29[0][0]']
+
+==================================================================================================  Bottleneck 6
+ conv2d_30 (Conv2D)             (None, 960, 12, 9)   153600      ['add_3[0][0]']
+
+ batch_normalization_30 (BatchN  (None, 960, 12, 9)  3840        ['conv2d_30[0][0]']
+ ormalization)
+
+ re_lu_20 (ReLU)                (None, 960, 12, 9)   0           ['batch_normalization_30[0][0]']
+
+ zero_padding2d_11 (ZeroPadding  (None, 960, 14, 11)  0          ['re_lu_20[0][0]']
+ 2D)
+
+ conv2d_31 (Conv2D)             (None, 960, 12, 9)   8640        ['zero_padding2d_11[0][0]']
+
+ batch_normalization_31 (BatchN  (None, 960, 12, 9)  3840        ['conv2d_31[0][0]']
+ ormalization)
+
+ re_lu_21 (ReLU)                (None, 960, 12, 9)   0           ['batch_normalization_31[0][0]']
+
+ conv2d_32 (Conv2D)             (None, 320, 12, 9)   307200      ['re_lu_21[0][0]']
+
+ batch_normalization_32 (BatchN  (None, 320, 12, 9)  1280        ['conv2d_32[0][0]']
+ ormalization)
+
+==================================================================================================  Ultima capa
+ conv2d_33 (Conv2D)             (None, 1280, 12, 9)  409600      ['batch_normalization_32[0][0]']
+
+ batch_normalization_33 (BatchN  (None, 1280, 12, 9)  5120       ['conv2d_33[0][0]']
+ ormalization)
+
+ re_lu_22 (ReLU)                (None, 1280, 12, 9)  0           ['batch_normalization_33[0][0]']
+
+ dropout (Dropout)              (None, 1280, 12, 9)  0           ['re_lu_22[0][0]']
+
+ global_average_pooling2d (Glob  (None, 1280)        0           ['dropout[0][0]']
+ alAveragePooling2D)
+ 
+==================================================================================================  Clasificador para semaforo
+ dense (Dense)                  (None, 160)          204960      ['global_average_pooling2d[0][0]'
+                                                                 ]
+
+ batch_normalization_34 (BatchN  (None, 160)         640         ['dense[0][0]']
+ ormalization)
+
+ re_lu_23 (ReLU)                (None, 160)          0           ['batch_normalization_34[0][0]']
+
+ dense_1 (Dense)                (None, 5)            805         ['re_lu_23[0][0]']
+
+ softmax (Softmax)              (None, 5)            0           ['dense_1[0][0]']
+
+==================================================================================================  Regresion para direccion
+ dense_2 (Dense)                (None, 80)           102480      ['global_average_pooling2d[0][0]'
+                                                                 ]
+
+ batch_normalization_35 (BatchN  (None, 80)          320         ['dense_2[0][0]']
+ ormalization)
+
+ re_lu_24 (ReLU)                (None, 80)           0           ['batch_normalization_35[0][0]']
+
+ dense_3 (Dense)                (None, 4)            324         ['re_lu_24[0][0]']
+
+==================================================================================================
+Total params: 1,914,521
+Trainable params: 1,892,409
+Non-trainable params: 22,112
+__________________________________________________________________________________________________
